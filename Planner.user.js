@@ -1,7 +1,7 @@
 // ==UserScript==
-// @name       Fill In Planner
+// @name       Planner
 // @namespace  http://use.i.E.your.homepage/
-// @version    10
+// @version    20
 // @description  Fill in my planner time log.
 // @match      http://planner.benon.com/cgi-bin/timelog.cgi
 // @downloadURL	https://raw.githubusercontent.com/chrisjoyce911/JumboTM/master/Planner.user.js
