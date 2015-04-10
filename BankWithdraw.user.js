@@ -1,15 +1,16 @@
 // ==UserScript==
 // @name	BankWithdraw
-// @namespac	https://www.demo.jumbolotto.com/
+// @namespace	https://www.demo.jumbolotto.com/
 // @description	Fills in bank account details to allow a withdraw request
 // @include	https://*/bank_withdraw/*
-// @includ	http://*/bank_withdraw/*
-// @includ	https://*/my-account/bank_withdraw*
-// @includ	http://*/my-account/bank_withdraw*
-// @includ	http://*/konto/einzahlungen/*
-// @includ	https://*/konto/einzahlungen/*
-// @includ	https://*/einkaufswagen/einzahlungen/*
-// @version	110
+// @include	http://*/bank_withdraw/*
+// @include	https://*/my-account/bank_withdraw*
+// @include	http://*/my-account/bank_withdraw*
+// @include	http://*/konto/einzahlungen/*
+// @include	https://*/konto/einzahlungen/*
+// @include	https://*/einkaufswagen/einzahlungen/*
+// @author	Chris Joyce
+// @version	115
 // @downloadURL	https://raw.githubusercontent.com/chrisjoyce911/JumboTM/master/BankWithdraw.user.js
 // @updateURL	https://raw.githubusercontent.com/chrisjoyce911/JumboTM/master/BankWithdraw.user.js
 // @copyright	2015+, Chris Joyce <chris@joyce.id.au>
@@ -66,8 +67,8 @@ function LoadAccount()
 
 function MySetSelect2(Element,Label,Data)
 {
-	console.log("Element " + Element + " Label "+ Label + " Data "+ Data);
-	 if (document.getElementById(Element) != null) 
+	//console.log("Element " + Element + " Label "+ Label + " Data "+ Data);
+	if (document.getElementById(Element) != null) 
 	{
 		document.getElementById(Element).value=Data;
 		var span = document.getElementById(Label);
@@ -78,7 +79,7 @@ function MySetSelect2(Element,Label,Data)
 function MySetElementValue(Element,Data)
 {
 	//console.log("Element " + Element + " Data "+ Data);
-	 if (document.getElementById(Element) != null) 
+	if (document.getElementById(Element) != null) 
 	{
 		document.getElementById(Element).value=Data;
 	}
@@ -88,7 +89,7 @@ function MySetElementValue(Element,Data)
 function MySetElementIndex(Element,Data)
 {
 	//console.log("Element " + Element + " Data "+ Data);
-	 if (document.getElementById(Element) != null) 
+	if (document.getElementById(Element) != null) 
 	{
 		document.getElementById(Element).selectedIndex = Data;
 	}
@@ -97,7 +98,7 @@ function MySetElementIndex(Element,Data)
 
 function MySetrElementChecked(Element)
 {
-	 if (document.getElementById(Element) != null) 
+	if (document.getElementById(Element) != null) 
 	{
 		document.getElementById(Element).checked=true; 
 	}
