@@ -10,8 +10,8 @@
 // @include        https://*/konto/einzahlungen/*
 // @include        https://*/einkaufswagen/einzahlungen/*
 // @version 100
-// @downloadURL https://github.com/chrisjoyce911/JumboTM/blob/master/BankWithdraw.user.js
-// @updateURL https://github.com/chrisjoyce911/JumboTM/blob/master/BankWithdraw.user.js
+// @downloadURL https://github.com/chrisjoyce911/JumboTM/raw/master/BankWithdraw.user.js
+// @updateURL https://github.com/chrisjoyce911/JumboTM/raw/master/BankWithdraw.user.js
 // @copyright  2015+, Chris Joyce
 // ==/UserScript==
 
