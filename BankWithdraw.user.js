@@ -1,25 +1,23 @@
 // ==UserScript==
-// @name       BankWithdraw
-// @namespace  https://www.demo.jumbolotto.com/
-// @description    Bank Withdraw
-// @include        https://*/bank_withdraw/*
-// @include        http://*/bank_withdraw/*
-// @include        https://*/my-account/bank_withdraw*
-// @include        http://*/my-account/bank_withdraw*
-// @include        http://*/konto/einzahlungen/*
-// @include        https://*/konto/einzahlungen/*
-// @include        https://*/einkaufswagen/einzahlungen/*
-// @version 100
-// @downloadURL https://raw.githubusercontent.com/chrisjoyce911/JumboTM/master/BankWithdraw.user.js
-// @updateURL https://raw.githubusercontent.com/chrisjoyce911/JumboTM/master/BankWithdraw.user.js
-// @copyright  2015+, Chris Joyce
+// @name	BankWithdraw
+// @namespac	https://www.demo.jumbolotto.com/
+// @description	Fills in bank account details to allow a withdraw request
+// @include	https://*/bank_withdraw/*
+// @includ	http://*/bank_withdraw/*
+// @includ	https://*/my-account/bank_withdraw*
+// @includ	http://*/my-account/bank_withdraw*
+// @includ	http://*/konto/einzahlungen/*
+// @includ	https://*/konto/einzahlungen/*
+// @includ	https://*/einkaufswagen/einzahlungen/*
+// @version	110
+// @downloadURL	https://raw.githubusercontent.com/chrisjoyce911/JumboTM/master/BankWithdraw.user.js
+// @updateURL	https://raw.githubusercontent.com/chrisjoyce911/JumboTM/master/BankWithdraw.user.js
+// @copyright	2015+, Chris Joyce <chris@joyce.id.au>
 // ==/UserScript==
-
 
 function main() {
   
 	var theAccount = LoadAccount() ;
-
 	var currentPageUrlIs = "";
 	if (typeof this.href != "undefined") {
        currentPageUrlIs = this.href.toString().toLowerCase(); 
@@ -27,7 +25,6 @@ function main() {
 		currentPageUrlIs = document.location.toString().toLowerCase();
 	}
 	console.log(currentPageUrlIs);
-	
 	// Common
 	MySetElementValue('tt_swift',theAccount.Swift);
 	MySetElementValue('tt_bic',theAccount.BIC);
@@ -36,7 +33,6 @@ function main() {
 	MySetElementValue('tt_additional_instructions',theAccount.Instruction);
 	MySetElementValue('amount',Math.floor(Math.random() * 80) + 20);
 	console.log("Done");
-
 }
 
 function objAccount(Swift,BIC,AccountNumber,AccountName,Instruction)
@@ -64,7 +60,6 @@ function LoadAccount()
 	var Instruction = Instructions[Picker];
 		
 	var MyAccount = new objAccount(Swift,BIC,AccountNumber,AccountName,Instruction) ;
-
 	console.log(MyAccount);
 	return MyAccount ;
 }
