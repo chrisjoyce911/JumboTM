@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name       OmniSign-Up
 // @namespace http://www.us.chrisj.dev.utah.lan
-// @version		15
+// @version		20
 // @description  Register customers on all sites
 // @include       http*://*.kr.*/create-account/*
 // @include       http*://*.au.*/create-account/*
@@ -16,6 +16,7 @@
 // @author		Chris Joyce
 // @grant       GM_getValue
 // @grant       GM_setValue
+// @grant		GM_registerMenuCommand
 // @copyright  2014+, Chris Joyce
 // ==/UserScript==
 
@@ -28,7 +29,7 @@ if (! TestName) {
 	TestName = GM_getValue('UserName', "");
 }
 
-const DEFAULT_EMAIL = TestName.'_';
+const DEFAULT_EMAIL = TestName + '_';
 const DEFAULT_DOMAIN = 'benon.com' ;
 
 function main(variant) {
@@ -42,7 +43,7 @@ function main(variant) {
 	// console.log(currentPageUrlIs);
 	
 	//var variant ; 
-	if( currentPageUrlIs.indexOf('KR') >= 0){
+	if( currentPageUrlIs.indexOf('kr') >= 0 || currentPageUrlIs.indexOf('ozdreamlotto') >= 0 ){
 	//	variant = "KR";
 	} else 	if( currentPageUrlIs.indexOf('au') >= 0){
 	//	variant = "AU";
@@ -50,6 +51,8 @@ function main(variant) {
 	//	variant = "US";
 	} else 	if( currentPageUrlIs.indexOf('de') >= 0){
 	//	variant = "DE";
+		// this is only needed till postcodes are worked out
+		alert('Postcode : ' + theCustomer.postcode);
 	} 
 	
 	var theCustomer = loadCustomer(variant) ;
@@ -126,7 +129,6 @@ function main(variant) {
 	MySetElementValue('suburb',theCustomer.suburb);
 	MySetSelect2('city_province',"select2-chosen-6",theCustomer.city_province);
 	MySetElementValue('postcode',theCustomer.postcode);
-	alert('Postcode : ' + theCustomer.postcode);
     
 }
 
@@ -219,7 +221,7 @@ function loadCustomer(variant)
 	//	console.log("No variant set");
 	//}
 		
-  if (variant == 'KR')
+  if (variant === 'KR')
     {
 		var firstnames = ["성민","지은","세연","민경","윤서","진희","지후","창민","동현","상준","세연","남일","은영","태영","남순","은희","선화","수미","지민","민혁","서준","광현","영남","호성","승희","민경","광민","성남","예준","민서","하은","도현","민서","선영","기남","준서","서연","지원","재욱","지연","연우","보영","정은","수현","치원","광혁","광석","광석","동욱","승원","혜진","진호","남선","지원","진호","선영","지은","지혜","태연","정우","영남","승은","연우","광훈","수미","진영","영애","광민","남순","승훈","세연","하선","진희","도연","광혁","유리","해성","건우","은서","자경","동준","대원","경민","혜진","수진","서준","은숙","선화","해일","지훈","정훈","춘화","윤숙","서연","승희","태웅","도연","경민"] ;    
 		var lastnames = ["지","하","오","담","임","천","후","반","문","오","맹","홍","궉","류(유)","송","평","마","상","오","포","주","신","전","빈","옹","서","해","가","안","공","화","상","서문","석","서문","내","현","묘","돈","문","심","제갈","조","곽","추","박","순","화","방","필","강","인","변","공","국","황보","옥","변","송","범","돈","후","남궁","탁","피","강","서","오","도","흥","소","조","송","맹","채","함","장","홍","봉","황보","요","표","궁","황","석","주","설","음","왕","가","천","문","남","권","박","신","왕","고","담","천"];
@@ -228,7 +230,7 @@ function loadCustomer(variant)
 		var country = "USA";
 	}
 
-  if (variant == 'US')
+  if (variant === 'US')
     {
 		var firstnames = ["Dirk", "Brian", "David B", "Leigh Ann", "Henry Lincoln", "Chesty", "Alvin", "Seth E.", "Bruce", "Marcus", "Mitchell", "Lewis", "John", "Matt", "Michael", "David" ] ;    
 		var lastnames = ["Vlug", "Chontosh", "Bleak", "Hester", "Johnson", "Puller", "York", "Howard", "Crandall", "Luttrell", "Paige", "Millett", "Basilone", "Urban", "Monsoor", "Shughar"];
@@ -237,7 +239,7 @@ function loadCustomer(variant)
 		var country = "USA";
 	}
 
-  if (variant == 'AU')
+  if (variant === 'AU')
     {
       var firstnames = ["Jack", "William", "Noah ", "Ethan", "Oliver", "Thomas", "Cooper", "James", "Lucas", "Lachlan", "Liam", "Samuel", "Jacob", "Joshua", "Mason", "Riley", "Max", "Alexander", "Charlie", "Xavier", "Benjamin", "Harrison", "Tyler", "Hunter", "Ryan", "Levi", "Isaac", "Jackson", "Blake", "Harry", "Braxton", "Oscar", "Henry", "Eli", "Daniel", "Jayden", "Jaxon", "Logan", "Jake", "Sebastian", "Flynn", "Patrick", "Hudson", "Dylan", "Mitchell", "Archie", "Connor", "Luke", "Matthew", "Aiden", "Charlotte", "Ruby", "Olivia", "Chloe", "Sophie", "Emily", "Mia", "Amelia", "Ava", "Isabella", "Ella", "Grace", "Sienna", "Lily", "Zoe", "Sophia", "Emma", "Isla", "Hannah", "Lucy", "Matilda", "Ivy", "Evie", "Eva", "Scarlett", "Abigail", "Maddison", "Madison", "Summer", "Lilly", "Chelsea", "Zara", "Jessica", "Isabelle", "Savannah", "Jasmine", "Georgia", "Layla", "Harper", "Sarah", "Alexis", "Stella", "Alice", "Willow", "Imogen", "Mackenzie", "Elizabeth", "Holly", "Annabelle", "Audrey"] ;
       var lastnames = ["Adler", "Ban", "Bond", "Burke", "Cobb", "Connell", "Foster", "Hannes", "O'Connor", "Rivkin", "Skase", "Theophanous", "Thomson", "Wheatley", "Williams"] ;

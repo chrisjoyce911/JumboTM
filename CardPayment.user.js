@@ -9,7 +9,7 @@
 // @include		http://*/konto/einzahlungen/*
 // @include		https://*/konto/einzahlungen/*
 // @include		https://*/einkaufswagen/einzahlungen/*
-// @version		25
+// @version		30
 // @author		Chris Joyce
 // @downloadURL	https://raw.githubusercontent.com/chrisjoyce911/JumboTM/master/CardPayment.user.js
 // @updateURL	https://raw.githubusercontent.com/chrisjoyce911/JumboTM/master/CardPayment.user.js
@@ -30,10 +30,7 @@ function main(ServiceType) {
 	 console.log(currentPageUrlIs);
 
 	//var variant ;
-	if( currentPageUrlIs.indexOf('kr') >= 0){
-		MySetSelect2('card_expiry_month',"select2-chosen-2",value=theCard.ExpiryMonth);
-		MySetSelect2('card_expiry_year',"select2-chosen-3",value=theCard.ExpiryYear);
-	} else if( currentPageUrlIs.indexOf('ozdreamlotto') >= 0){
+	if( currentPageUrlIs.indexOf('kr') >= 0 || currentPageUrlIs.indexOf('ozdreamlotto') >= 0 ){
 		MySetSelect2('card_expiry_month',"select2-chosen-2",value=theCard.ExpiryMonth);
 		MySetSelect2('card_expiry_year',"select2-chosen-3",value=theCard.ExpiryYear);
 	} else if( currentPageUrlIs.indexOf('au') >= 0){
