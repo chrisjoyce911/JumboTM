@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name       OmniSign-Up
 // @namespace http://www.us.chrisj.dev.utah.lan
-// @version		10
+// @version		15
 // @description  Register customers on all sites
 // @include       http*://*.kr.*/create-account/*
 // @include       http*://*.au.*/create-account/*
@@ -13,12 +13,22 @@
 // @require       http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.js
 // @updateURL     https://raw.githubusercontent.com/chrisjoyce911/JumboTM/master/OmniSign-Up.user.js
 // @downloadUR    https://raw.githubusercontent.com/chrisjoyce911/JumboTM/master/OmniSign-Up.user.js
-
+// @author		Chris Joyce
+// @grant       GM_getValue
+// @grant       GM_setValue
 // @copyright  2014+, Chris Joyce
 // ==/UserScript==
 
+var TestName = GM_getValue('UserName', "");
+	
+if (! TestName) {
+    var UserName = prompt("Please enter your username (USERNAME@benon.com", "");
+	GM_setValue('UserName', UserName);
+	console.log('UserName has been set to : ' + UserName );
+	TestName = GM_getValue('UserName', "");
+}
 
-const DEFAULT_EMAIL = 'chrisj_';
+const DEFAULT_EMAIL = TestName.'_';
 const DEFAULT_DOMAIN = 'benon.com' ;
 
 function main(variant) {
