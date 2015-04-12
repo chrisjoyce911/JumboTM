@@ -1,29 +1,29 @@
 // ==UserScript==
-// @name       OmniSign-Up
-// @namespace http://www.us.chrisj.dev.utah.lan
-// @version		20
-// @description  Register customers on all sites
-// @include       http*://*.kr.*/create-account/*
-// @include       http*://*.au.*/create-account/*
-// @include       http*://*.us.*/create-account/*
-// @include       http*://*registrieren*
-// @include       http*://www.demo-kr.ozlotteries.com/create-account/*
-// @include       http*://www.*.ozssssdreamlotto.com/create-account/*
-// @include       http*://*ozdreamlotto*/create-account/*
-// @require       http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.js
-// @updateURL     https://raw.githubusercontent.com/chrisjoyce911/JumboTM/master/OmniSign-Up.user.js
-// @downloadUR    https://raw.githubusercontent.com/chrisjoyce911/JumboTM/master/OmniSign-Up.user.js
+// @name		OmniSign-Up
+// @namespace	http://www.us.chrisj.dev.utah.lan
+// @version		25
+// @description	Register customers on all sites
+// @include		http*://*.kr.*/create-account/*
+// @include		http*://*.au.*/create-account/*
+// @include		http*://*.us.*/create-account/*
+// @include		http*://*registrieren*
+// @include		http*://www.demo-kr.ozlotteries.com/create-account/*
+// @include		http*://www.*.ozssssdreamlotto.com/create-account/*
+// @include		http*://*ozdreamlotto*/create-account/*
+// @require		http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.js
+// @updateURL	https://raw.githubusercontent.com/chrisjoyce911/JumboTM/master/OmniSign-Up.user.js
+// @downloadUR	https://raw.githubusercontent.com/chrisjoyce911/JumboTM/master/OmniSign-Up.user.js
 // @author		Chris Joyce
 // @grant       GM_getValue
 // @grant       GM_setValue
 // @grant		GM_registerMenuCommand
-// @copyright  2014+, Chris Joyce
+// @copyright	2014+, Chris Joyce
 // ==/UserScript==
 
 var TestName = GM_getValue('UserName', "");
 	
 if (! TestName) {
-    var UserName = prompt("Please enter your username (USERNAME@benon.com", "");
+    var UserName = prompt("Please enter your username (USERNAME@benon.com)", "");
 	GM_setValue('UserName', UserName);
 	console.log('UserName has been set to : ' + UserName );
 	TestName = GM_getValue('UserName', "");
@@ -32,8 +32,8 @@ if (! TestName) {
 const DEFAULT_EMAIL = TestName + '_';
 const DEFAULT_DOMAIN = 'benon.com' ;
 
-function main(variant) {
-	
+function main(variant)
+{	
 	var currentPageUrlIs = "";
 	if (typeof this.href != "undefined") {
        currentPageUrlIs = this.href.toString().toLowerCase(); 
@@ -51,8 +51,6 @@ function main(variant) {
 	//	variant = "US";
 	} else 	if( currentPageUrlIs.indexOf('de') >= 0){
 	//	variant = "DE";
-		// this is only needed till postcodes are worked out
-		alert('Postcode : ' + theCustomer.postcode);
 	} 
 	
 	var theCustomer = loadCustomer(variant) ;
@@ -108,16 +106,14 @@ function main(variant) {
 	MySetSelect2('dob_month',"select2-chosen-2",theCustomer.dob_mm);
 	MySetSelect2('dob_year',"select2-chosen-3",theCustomer.dob_yyyy);
 	
-	// this.street_number = street_number;
-	// this.street_name = street_name;
-	// this.suburb = suburb;
-	// this.city_province = city_province;
-	// this.postcode = postcode;
-	// this.country = country ;
-	
 	// DE
 	MySetElementValue('signup_address_number',theCustomer.street_number);
 	MySetElementValue('signup_address_street',theCustomer.street_name);
+
+	if( currentPageUrlIs.indexOf('de') >= 0){
+		// this is only needed till postcodes are worked out
+		alert('Postcode : ' + theCustomer.postcode);
+	} 
 	
 //	<span id="location-value" data-state="Hamburg">22001, Hamburg</span>
 	
@@ -144,11 +140,6 @@ function MySetSelect2(Element,Label,Data)
 	return true ;
 }
 
-
-// elem.hasAttribute(name) - checks if the attribute exists
-// elem.getAttribute(name) - gets an attribute value
-// elem.setAttribute(name, value) - sets an attribute
-
 function MySpan(Element,Data,Attribute,AttData)
 {
 	console.log("Element " + Element + " Data" + Data + " Attribute " + Attribute +  " AttData " +AttData  );
@@ -162,7 +153,6 @@ function MySpan(Element,Data,Attribute,AttData)
 			span.setAttribute(Attribute, AttData);
 		}
 	}
-
 	return true ;
 }
 
@@ -190,7 +180,8 @@ function MySetElementIndex(Element,Data)
  * Returns a random integer between min (inclusive) and max (inclusive)
  * Using Math.round() will give you a non-uniform distribution!
  */
-function getRandomInt(min, max) {
+function getRandomInt(min, max)
+{
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
@@ -210,6 +201,23 @@ function objCustomer(lastname,firstname,email,phone,dob_dd,dob_mm,dob_yyyy,gende
 	this.city_province = city_province;
 	this.postcode = postcode;
 	this.country = country ;
+
+	var newCustomerThoughts = [
+		{	"firstname":"Chris",
+			"lastname":"Joyce",
+			"email":"chrisj@enon.com",
+			"phone":"12345",
+			"mobile":"1234",
+			"dob_day":1,
+			"dob_month":12,
+			"dob_year":2017,
+			"gender":"m",
+			"street_number":"1",
+			"street_name":"Some Street",
+			"cvv":99
+		} 
+		]
+
 }
 
 function loadCustomer(variant)
@@ -329,32 +337,33 @@ function loadCustomer(variant)
 
 function objPunter(id,lastname,firstname,gender,dob_dd_value,dob_mm_value,dob_yyyy_value,postcode,city,address_street,streetnum,bankcode,bankaccount,IBAN)
 {
-   this.id = id ;
-   this.firstname = firstname;
-   this.lastname = lastname;
-   this.gender = gender ;
-   this.dob_dd_value = dob_dd_value;
-   this.dob_mm_value = dob_mm_value;
-   this.dob_yyyy_value = dob_yyyy_value;
-   this.streetnum = streetnum;
-   this.address_street = address_street;
-   this.postcode = postcode;
+	this.id = id ;
+	this.firstname = firstname;
+	this.lastname = lastname;
+	this.gender = gender ;
+	this.dob_dd_value = dob_dd_value;
+	this.dob_mm_value = dob_mm_value;
+	this.dob_yyyy_value = dob_yyyy_value;
+	this.streetnum = streetnum;
+	this.address_street = address_street;
+	this.postcode = postcode;
 }
 
 function loadPunters()
 {
-    MyPunters = new Array();
-  MyPunters.push( new objPunter('1','SIMLZWEI-IDC-Abnahme','Rainer','M','15','02','1962','10965','Berlin,Mauerstr','89','51170024','033177700','DE19511700240033177700'));
-  MyPunters.push( new objPunter('2','SIMLZWEI-IDC-Abnahme','Ralph','M','26','4','1968','60388','Frankfurt am Main','Borsig Allee','12','51170024','033177700','DE19511700240033177700'));
-  MyPunters.push( new objPunter('3','SIMLZWEI-IDC-Abnahme','Mandy','W','19','02','1969','09120','Chemnitz','Annaberger Straße','89','51170024','033177700','DE19511700240033177700'));
-  MyPunters.push( new objPunter('4','SIMLZWEI-IDC-Abnahme','Egon','M','17','05','1937','67071','Ludwigshafen','Dürkheimer Str.','31','51170024','033177700','DE19511700240033177700'));
-  MyPunters.push( new objPunter('5','SIMLZWEI-IDC-Abnahme','Açkingül-Ürengül-Üstüngül','W','12','02','1966','67071','Ludwigshafen','Schillerstrasse','35,51170024','033177700','DE19511700240033177700'));
-  MyPunters.push( new objPunter('6','SIMLZWEI-IDC-Abnahme','Karl-Gustav','M','3','01','1907','10787','Berlin','Kaiser Karl-Gustav Platz','25','51170024','033177700','DE19511700240033177700'));
-  MyPunters.push( new objPunter('7','SIMLZWEI-IDC-Abnahme-Wolfenschlegelsteinhausenbergerdorff','André','M','19','03','1956','67112','Mutterstadt','An der Folenweide','12','51170024','033177700','DE19511700240033177700'));
-   return MyPunters ;
+	MyPunters = new Array();
+	MyPunters.push( new objPunter('1','SIMLZWEI-IDC-Abnahme','Rainer','M','15','02','1962','10965','Berlin,Mauerstr','89','51170024','033177700','DE19511700240033177700'));
+	MyPunters.push( new objPunter('2','SIMLZWEI-IDC-Abnahme','Ralph','M','26','4','1968','60388','Frankfurt am Main','Borsig Allee','12','51170024','033177700','DE19511700240033177700'));
+	MyPunters.push( new objPunter('3','SIMLZWEI-IDC-Abnahme','Mandy','W','19','02','1969','09120','Chemnitz','Annaberger Straße','89','51170024','033177700','DE19511700240033177700'));
+	MyPunters.push( new objPunter('4','SIMLZWEI-IDC-Abnahme','Egon','M','17','05','1937','67071','Ludwigshafen','Dürkheimer Str.','31','51170024','033177700','DE19511700240033177700'));
+	MyPunters.push( new objPunter('5','SIMLZWEI-IDC-Abnahme','Açkingül-Ürengül-Üstüngül','W','12','02','1966','67071','Ludwigshafen','Schillerstrasse','35,51170024','033177700','DE19511700240033177700'));
+	MyPunters.push( new objPunter('6','SIMLZWEI-IDC-Abnahme','Karl-Gustav','M','3','01','1907','10787','Berlin','Kaiser Karl-Gustav Platz','25','51170024','033177700','DE19511700240033177700'));
+	MyPunters.push( new objPunter('7','SIMLZWEI-IDC-Abnahme-Wolfenschlegelsteinhausenbergerdorff','André','M','19','03','1956','67112','Mutterstadt','An der Folenweide','12','51170024','033177700','DE19511700240033177700'));
+	return MyPunters ;
 }
 
-function dateToYYYYMMDDhhmmss(date) {
+function dateToYYYYMMDDhhmmss(date)
+{
     function pad(num) {
         num = num + '';
         return num.length < 2 ? '0' + num : num;
@@ -368,37 +377,36 @@ function dateToYYYYMMDDhhmmss(date) {
 }
 
 
-function schufafixed(use_id) {
+function schufafixed(use_id)
+{
+	var my_email;
+	my_email = DEFAULT_EMAIL + Math.floor((Math.random()*9999)+1000) + '_' ;
 
-   var my_email;
-   my_email = DEFAULT_EMAIL + Math.floor((Math.random()*9999)+1000) + '_' ;
+	loadPunters();
+	var thePunter = MyPunters[use_id];
 
-   loadPunters();
+	document.getElementById("signup_gender").selectedIndex = 1;
+	document.getElementById('password').value='4Me2Test';
+	document.getElementById('signup_show_password').checked=true;
+	document.getElementById('signup_agree').checked=true;
 
-  var thePunter = MyPunters[use_id];
-
-   document.getElementById("signup_gender").selectedIndex = 1;
-   document.getElementById('password').value='4Me2Test';
-  document.getElementById('signup_show_password').checked=true;
-   document.getElementById('signup_agree').checked=true;
-
-   document.getElementById('first_name').value=thePunter.firstname;
-   document.getElementById('last_name').value=thePunter.lastname;  
+	document.getElementById('first_name').value=thePunter.firstname;
+	document.getElementById('last_name').value=thePunter.lastname;  
     
-    document.getElementById('social_security').value=thePunter.lastname;  
+	document.getElementById('social_security').value=thePunter.lastname;  
 
-   var s = my_email + thePunter.firstname + "." + thePunter.lastname;
-   signup_email = s.replace(/\ /g, '-');
-   document.getElementById('email').value=signup_email  + '@' +  DEFAULT_DOMAIN;
-   document.getElementById('confirm_email').value=signup_email  + '@' +  DEFAULT_DOMAIN;
+	var s = my_email + thePunter.firstname + "." + thePunter.lastname;
+	signup_email = s.replace(/\ /g, '-');
+	document.getElementById('email').value=signup_email  + '@' +  DEFAULT_DOMAIN;
+	document.getElementById('confirm_email').value=signup_email  + '@' +  DEFAULT_DOMAIN;
 
-   document.getElementById('signup_dob').value=thePunter.dob_dd_value + '.' + thePunter.dob_mm_value+ '.' + thePunter.dob_yyyy_value;
-   document.getElementById('signup_dob_hidden').value=thePunter.dob_yyyy_value + '-' + thePunter.dob_mm_value+ '-' + thePunter.dob_dd_value;
+	document.getElementById('signup_dob').value=thePunter.dob_dd_value + '.' + thePunter.dob_mm_value+ '.' + thePunter.dob_yyyy_value;
+	document.getElementById('signup_dob_hidden').value=thePunter.dob_yyyy_value + '-' + thePunter.dob_mm_value+ '-' + thePunter.dob_dd_value;
 
-   document.getElementById('signup_address_number').value=thePunter.streetnum;
-   document.getElementById('signup_address_street').value=thePunter.address_street;  
+	document.getElementById('signup_address_number').value=thePunter.streetnum;
+	document.getElementById('signup_address_street').value=thePunter.address_street;  
 
-   alert ('Use '+ thePunter.postcode + ' for the postcode');
+	alert ('Use '+ thePunter.postcode + ' for the postcode');
 }
 
 
