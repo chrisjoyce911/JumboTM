@@ -14,6 +14,9 @@ There is now [on GitHub](https://github.com/chrisjoyce911/JumboTM) for easy acce
 #### OmniSign-Up.user.js
 Offers user for all Jumbo sites , it allows for the different registeration forms.
 
+**First use**
+As an email address is needed you will be asked for a username, this should be your Jumbo user , it will be used USERNAME_SomeName_random@benon.com
+
 **todo**
 * Improve sample data managment
 * Add a selection option for country

@@ -1,15 +1,12 @@
 // ==UserScript==
 // @name		OmniSign-Up
 // @namespace	http://www.us.chrisj.dev.utah.lan
-// @version		25
+// @version		26
 // @description	Register customers on all sites
-// @include		http*://*.kr.*/create-account/*
-// @include		http*://*.au.*/create-account/*
-// @include		http*://*.us.*/create-account/*
-// @include		http*://*registrieren*
-// @include		http*://www.demo-kr.ozlotteries.com/create-account/*
-// @include		http*://www.*.ozssssdreamlotto.com/create-account/*
-// @include		http*://*ozdreamlotto*/create-account/*
+// @include		http://*/create-account/*
+// @include		https://*/create-account/*
+// @include		http://*registrieren*
+// @include		https://*registrieren*
 // @require		http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.js
 // @updateURL	https://raw.githubusercontent.com/chrisjoyce911/JumboTM/master/OmniSign-Up.user.js
 // @downloadUR	https://raw.githubusercontent.com/chrisjoyce911/JumboTM/master/OmniSign-Up.user.js
@@ -223,12 +220,6 @@ function objCustomer(lastname,firstname,email,phone,dob_dd,dob_mm,dob_yyyy,gende
 function loadCustomer(variant)
 {
 	
-	//if (typeof variant != 'undefined')
-	//{
-	//	variant = "KR" ;
-	//	console.log("No variant set");
-	//}
-		
   if (variant === 'KR')
     {
 		var firstnames = ["성민","지은","세연","민경","윤서","진희","지후","창민","동현","상준","세연","남일","은영","태영","남순","은희","선화","수미","지민","민혁","서준","광현","영남","호성","승희","민경","광민","성남","예준","민서","하은","도현","민서","선영","기남","준서","서연","지원","재욱","지연","연우","보영","정은","수현","치원","광혁","광석","광석","동욱","승원","혜진","진호","남선","지원","진호","선영","지은","지혜","태연","정우","영남","승은","연우","광훈","수미","진영","영애","광민","남순","승훈","세연","하선","진희","도연","광혁","유리","해성","건우","은서","자경","동준","대원","경민","혜진","수진","서준","은숙","선화","해일","지훈","정훈","춘화","윤숙","서연","승희","태웅","도연","경민"] ;    
