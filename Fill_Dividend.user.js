@@ -4,7 +4,7 @@
 // @description	Fill dividends in on dev sites
 // @include		https://admin.kr.chrisj.dev.iris.lan/lottery/*/draw/*/dividend/edit
 // @include		http://admin.kr.chrisj.dev.iris.lan/lottery/*/draw/*/dividend/edit
-// @version		10
+// @version		20
 // @author		Chris Joyce
 // @downloadURL	https://raw.githubusercontent.com/chrisjoyce911/JumboTM/master/Fill_Dividend.user.js
 // @updateURL	https://raw.githubusercontent.com/chrisjoyce911/JumboTM/master/Fill_Dividend.user.js
